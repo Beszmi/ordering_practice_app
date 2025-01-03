@@ -94,8 +94,8 @@
         <title>Login page</title>
     </head>
 <body class="hatter_kep">
-    <?php include "menu.html" ?>
-    <?php $user_type = isset($_POST["user_type"]) ? $_POST["user_type"] : ""; 
+    <?php include "menu.php" ?>
+    <?php $user_type = isset($_GET["user_type"]) ? $_GET["user_type"] : ""; 
         if (!isset($user_type)){
             echo "<div class= \"doboz\">";
             echo "<p class = \"error\"> HIBA</p>";
@@ -105,20 +105,20 @@
     <div class="doboz">
         <?php 
         if (isset($user_type)){
-            echo "<form action= \"site.php\" method =\"post\">";
-            echo "<p class=\"info1\">Felhasználó név: </p><br><input type= \"text\" name = \"user\">";
-            echo "<br>";
-            echo "<p class=\"info1\">Jelszo: </p><br><input type =\"password\" name = \"pass\">";
-            echo "<br>";
-            echo "<button type=\"submit\" class=\"info\">BEJELENTKEZÉS</button><br>";
-        echo "</form>";
-        }
-        if ($user_type == "costumer"){
-
-        } elseif ($user_type == "seller"){
-
-        }
-        
+                echo "<form action= \"";
+                if ($user_type=="seller"){
+                    echo "selling.php";
+                } else if ($user_type=="costumer"){
+                    echo "buying.php";
+                }
+                echo "\" method =\"post\">";
+                echo "<p class=\"info1\">Felhasználó név: </p><br><input type= \"text\" name = \"user\">";
+                echo "<br>";
+                echo "<p class=\"info1\">Jelszo: </p><br><input type =\"password\" name = \"pass\">";
+                echo "<br>";
+                echo "<button type=\"submit\" class=\"info\">BEJELENTKEZÉS</button><br>";
+                echo "</form>";
+            }        
         ?>
         
         </div>

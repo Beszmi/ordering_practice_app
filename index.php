@@ -113,7 +113,7 @@
         <title>Project front page</title>
     </head>
 <body class="hatter_kep">
-    <?php include "menu.html" ?>
+    <?php include "menu.php" ?>
     <div class="doboz">
         <p class="cim">PHP Stock and ordering system Prototype</p>
     </div>
