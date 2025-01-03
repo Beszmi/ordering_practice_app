@@ -3,46 +3,27 @@
     .szep{
         font-size: 18px;
     }
-    .teko{
-       background-color: green;
-        color: gold;
-        border: black;
-        padding: 5px;
-        border-radius: 4px;
-        font-size: xx-large;
-        font-style: bold;
-        cursor: pointer; 
-        font-size: 24px;
-        border: 2px;
-    }
-    .teko:hover{
-        background-color: darkgreen;
-        color: orange;
-        transition: 0.1s;
-        padding: 10px;
-        font-weight: bold;
-    }
-    .teko:active{
-        color: red;
-        font-weight: bold;
-    }
     .updet{
         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
         color:red;
         background-color: white;
         width: fit-content;
     }
-    .cim{
-        font-weight: bold;
-        font-size: 72px;
-        color: blue;
-        text-shadow: 0px 0px 8px rgba(0, 0, 0, .6);
-        font-family: Arial, Helvetica, sans-serif;
-    }
     .doboz{
         position: relative;
-        left: 28%;
-        top: 30px;
+        display: flex;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.6);
+        margin-top: 150px;
+        width: fit-content;
+        justify-content: center;
+        align-items: center;
+        place-content: center;
+        left: 50%;
+        right: 50%;
+        transform: translate(-50%, 0);
+        padding: 15px;
+        border-radius: 15%;
     }
     .info{
         background-color: #00F2F2;
@@ -55,6 +36,8 @@
         cursor: pointer; 
         font-size: 24px;
         border: 2px;
+        margin-top: 10px;
+        transition: 0.1s;
     }
     .info:hover{
         background-color: #096B72;
@@ -96,63 +79,48 @@
         font-weight: bold;
         box-shadow: 0px 0px 8px rgba(0, 0, 0, .8);
     }
-    .ajanlo{
-        background-color: #03CEA4;
-        color: #EAC435;
-        border: #CA1551;
-        padding: 5px;
-        border-radius: 4px;
-        font-size: xx-large;
-        font-style: bold;
-        cursor: pointer; 
-        font-size: 24px;
-        border: 2px;
-    }
-    .ajanlo:hover{
-        background-color: #345995;
-        color: #FB4D3D;
-        box-shadow: 0px 0px 8px rgba(0, 0, 0, .6);
-        transition: 0.1s;
-        padding: 10px;
-        font-weight: bold;
-    }
-    .ajanlo:active{
-        color: #253D5B;
-        background-color: #CA1551;
-        font-weight: bold;
-        box-shadow: 0px 0px 8px rgba(0, 0, 0, .8);
-    }
     .info1{
         color: #FFEAEE;
         border: #0075F2;
         font-weight: bold;
         font-size: 24px;
         text-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+        display: inline-block;
     }
 </style>
 <html lang="en">
     <head>
         <?php include "header.html"?>
-        <title>Project front page</title>
+        <title>Login page</title>
     </head>
 <body class="hatter_kep">
     <?php include "menu.html" ?>
+    <?php $user_type = isset($_POST["user_type"]) ? $_POST["user_type"] : ""; 
+        if (!isset($user_type)){
+            echo "<div class= \"doboz\">";
+            echo "<p class = \"error\"> HIBA</p>";
+            echo "</div>";
+        }        
+        ?>
     <div class="doboz">
-        <p class="cim">PHP Stock and ordering system Prototype</p>
-    </div>
-    <div class="grid-container">
-        <div class="grid-item"><button onclick="window.location.href='login.php?user_type=vasarlo';" class="ajanlo">Costumer <br> Login</button></div>
-        <div class="grid-item"><button onclick="window.location.href='login.html';"class="info">Seller <br> Login</button></div>
-        <div class="grid-item"><button onclick="window.location.href='register.html';"class="servers">Register</button></div>
+        <?php 
+        if (isset($user_type)){
+            echo "<form action= \"site.php\" method =\"post\">";
+            echo "<p class=\"info1\">Felhasználó név: </p><br><input type= \"text\" name = \"user\">";
+            echo "<br>";
+            echo "<p class=\"info1\">Jelszo: </p><br><input type =\"password\" name = \"pass\">";
+            echo "<br>";
+            echo "<button type=\"submit\" class=\"info\">BEJELENTKEZÉS</button><br>";
+        echo "</form>";
+        }
+        if ($user_type == "costumer"){
+
+        } elseif ($user_type == "seller"){
+
+        }
         
-        <div class="grid-item">
-        <form action="site.php" method ="get">
-            <p class="info1">Felhasználó név: </p><input type= "text" name = "user">
-            <br>
-            <p class="info1">Adat: </p><input type ="number" name = "value">
-            <br>
-            <button type="submit" class="info">PHP oldal</button><br>
-        </form>
+        ?>
+        
         </div>
 </body>
 </html>

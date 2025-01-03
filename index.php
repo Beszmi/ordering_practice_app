@@ -3,29 +3,6 @@
     .szep{
         font-size: 18px;
     }
-    .teko{
-       background-color: green;
-        color: gold;
-        border: black;
-        padding: 5px;
-        border-radius: 4px;
-        font-size: xx-large;
-        font-style: bold;
-        cursor: pointer; 
-        font-size: 24px;
-        border: 2px;
-    }
-    .teko:hover{
-        background-color: darkgreen;
-        color: orange;
-        transition: 0.1s;
-        padding: 10px;
-        font-weight: bold;
-    }
-    .teko:active{
-        color: red;
-        font-weight: bold;
-    }
     .updet{
         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
         color:red;
@@ -141,8 +118,8 @@
         <p class="cim">PHP Stock and ordering system Prototype</p>
     </div>
     <div class="grid-container">
-        <div class="grid-item"><button onclick="window.location.href='login.php?user_type=vasarlo';" class="ajanlo">Costumer <br> Login</button></div>
-        <div class="grid-item"><button onclick="window.location.href='login.html';"class="info">Seller <br> Login</button></div>
+        <div class="grid-item"><button onclick="window.location.href='login.php?user_type=costumer';" class="ajanlo">Costumer <br> Login</button></div>
+        <div class="grid-item"><button onclick="window.location.href='login.php?user_type=seller';"class="info">Seller <br> Login</button></div>
         <div class="grid-item"><button onclick="window.location.href='register.html';"class="servers">Register</button></div>
         
         <div class="grid-item">
