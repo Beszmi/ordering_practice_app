@@ -98,7 +98,7 @@
     <?php $user_type = isset($_GET["user_type"]) ? $_GET["user_type"] : ""; 
         if (!isset($user_type)){
             echo "<div class= \"doboz\">";
-            echo "<p class = \"error\"> HIBA</p>";
+            echo "<p class = \"error\"> ERROR MISSING USER TYPE</p>";
             echo "</div>";
         }        
         ?>
@@ -107,17 +107,29 @@
         if (isset($user_type)){
                 echo "<form action= \"";
                 if ($user_type=="seller"){
-                    echo "selling.php";
+                    echo "login.php?user_type=seller";
                 } else if ($user_type=="costumer"){
                     echo "buying.php";
                 }
                 echo "\" method =\"post\">";
-                echo "<p class=\"info1\">Felhasználó név: </p><br><input type= \"text\" name = \"user\">";
+                echo "<p class=\"info1\">Username: </p><br><input type= \"text\" name = \"user\">";
                 echo "<br>";
-                echo "<p class=\"info1\">Jelszo: </p><br><input type =\"password\" name = \"pass\">";
+                echo "<p class=\"info1\">Password: </p><br><input type =\"password\" name = \"pass\">";
                 echo "<br>";
-                echo "<button type=\"submit\" class=\"info\">BEJELENTKEZÉS</button><br>";
-                echo "</form>";
+                echo "<button type=\"submit\" name=\"login_button\" class=\"info\">LOGIN</button><br>";
+                echo "<input type =\"checkbox\" name=\"remember\" value =\"false\"> <p class=\"info1\" style = \" margin: 5px; \">remember?</p>";
+                echo "</form>";                
+                if(isset($_POST["login_button"])){
+                    if (empty($_POST["user"]) && empty($_POST["pass"])){
+                        echo "<p class=\"error\">You didnt put in your login information!</p>";
+                    } elseif (empty($_POST["user"])){
+                        echo "<p class=\"error\">Username field empty!</p>";
+                    } elseif (empty($_POST["pass"])){
+                        echo "<p class=\"error\">Password field was empty!</p>";
+                    } elseif (isset($_POST["user"]) && isset($_POST["pass"])){
+                        echo "<p class=\"error\">NICE</p>";
+                    }
+                }
             }        
         ?>
         
