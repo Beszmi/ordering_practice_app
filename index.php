@@ -122,14 +122,5 @@
         <div class="grid-item"><button onclick="window.location.href='login.php?user_type=seller';"class="info">Seller <br> Login</button></div>
         <div class="grid-item"><button onclick="window.location.href='register.html';"class="servers">Register</button></div>
         
-        <div class="grid-item">
-        <form action="site.php" method ="get">
-            <p class="info1">Felhasználó név: </p><input type= "text" name = "user">
-            <br>
-            <p class="info1">Adat: </p><input type ="number" name = "value">
-            <br>
-            <button type="submit" class="info">PHP oldal</button><br>
-        </form>
-        </div>
 </body>
 </html>

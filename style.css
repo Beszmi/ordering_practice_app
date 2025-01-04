@@ -130,6 +130,14 @@
     text-shadow: rgba(0, 0, 0, .8);
     right: 10px;
 }
+.ido{
+    font-family: 'Times New Roman', Times, serif;
+    text-align: right;
+    font-size: xx-large;
+    color: white;
+    text-shadow: rgba(0, 0, 0, .8);
+    text-align: center;
+}
 .ikonok{
     margin-top: 25px;
     padding-right: 5px;
