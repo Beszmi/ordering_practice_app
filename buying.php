@@ -91,7 +91,7 @@
 <html lang="en">
     <head>
         <?php include "header.html"?>
-        <title>Login page</title>
+        <title>Costumer page</title>
     </head>
 <body class="hatter_kep">
     <?php include "menu.php" ?>
@@ -105,7 +105,10 @@
     <div class="doboz">
         <?php 
         if (isset($user_type)){
-                echo "<form action= \"";
+                $user = filter_input(INPUT_POST, "user", FILTER_SANITIZE_SPECIAL_CHARS);
+                $pass = htmlspecialchars($_POST["pass"]);
+
+                echo "<form action= \"";                
                 if ($user_type=="seller"){
                     echo "login.php?user_type=seller";
                 } else if ($user_type=="costumer"){
@@ -127,7 +130,7 @@
                     } elseif (empty($_POST["pass"])){
                         echo "<p class=\"error\">Password field was empty!</p>";
                     } elseif (isset($_POST["user"]) && isset($_POST["pass"])){
-                        echo "<p class=\"error\">NICE</p>";
+                        echo "<p class=\"error\">PASSED</p>";
                     }
                 }
             }        
