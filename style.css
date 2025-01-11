@@ -160,3 +160,16 @@
 .inline{
     display: inline-block;
 }
+.last_logged_box{
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+}
+.last_logged_text{
+    margin-top: 5px;
+    font-size: xx-large;
+    color: white;
+    text-shadow: rgba(0, 0, 0, 0.8);
+    right: 10px;
+    text-align: left;
+}

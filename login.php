@@ -148,5 +148,14 @@
         ?>
         
         </div>
+    <div class="last_logged_box"><p class="last_logged_text">
+    <?php 
+    if (!empty($_COOKIE["last_login_type"])){
+                echo "Last login as: <br> {$_COOKIE["last_login_type"]}";
+            } else {
+                echo "no recent logins";
+            }
+    ?>
+    </p></div>   
 </body>
 </html>

@@ -11,21 +11,7 @@
         color: white;
         text-shadow: rgba(0, 0, 0, 0.8);
         right: 10px;
-    }
-
-    .last_logged_box{
-        position: fixed;
-        bottom: 0px;
-        left: 0px;
-    }
-    .last_logged_text{
-        margin-top: 5px;
-        font-size: xx-large;
-        color: white;
-        text-shadow: rgba(0, 0, 0, 0.8);
-        right: 10px;
-        text-align: left;
-    }
+    }   
 </style>
 <div class="menu">
     <div class="menu_kicsi">
@@ -63,12 +49,4 @@
         ?>
     </p></div>
 </div>
-<div class="last_logged_box"><p class="last_logged_text">
-    <?php 
-            if (!empty($_COOKIE["last_login_type"])){
-                echo "Last login as: <br> {$_COOKIE["last_login_type"]}";
-            } else {
-                echo "no recent logins";
-            }
-    ?></p></div>
 <div class="version_box"><p class="version">Alpha V0.1.0</p></div>
