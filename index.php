@@ -16,10 +16,19 @@
         text-shadow: 0px 0px 8px rgba(0, 0, 0, .6);
         font-family: Arial, Helvetica, sans-serif;
     }
-    .doboz{
+    .doboz_index{
         position: relative;
-        left: 28%;
-        top: 30px;
+        text-align: center;
+        margin-top: 30px;
+        width: fit-content;
+        justify-content: center;
+        align-items: center;
+        place-content: center;
+        left: 50%;
+        right: 50%;
+        transform: translate(-50%, 0);
+        padding: 15px;
+        border-radius: 15%;
     }
     .info{
         background-color: #00F2F2;
@@ -114,12 +123,12 @@
     </head>
 <body class="hatter_kep">
     <?php include "menu.php" ?>
-    <div class="doboz">
+    <div class="doboz_index">
         <p class="cim">PHP Stock and ordering system Prototype</p>
     </div>
     <div class="grid-container">
-        <div class="grid-item"><button onclick="window.location.href='login.php?user_type=costumer';" class="ajanlo">Costumer <br> Login</button></div>
-        <div class="grid-item"><button onclick="window.location.href='login.php?user_type=seller';"class="info">Seller <br> Login</button></div>
+        <div class="grid-item"><button onclick="window.location.href='login.php?user_type=buying';" class="ajanlo">Costumer <br> Login</button></div>
+        <div class="grid-item"><button onclick="window.location.href='login.php?user_type=selling';"class="info">Seller <br> Login</button></div>
         <div class="grid-item"><button onclick="window.location.href='register.html';"class="servers">Register</button></div>
     <div class="last_logged_box"><p class="last_logged_text">
         <?php 

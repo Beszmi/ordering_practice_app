@@ -173,3 +173,18 @@
     right: 10px;
     text-align: left;
 }
+.doboz{
+    position: relative;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    margin-top: 150px;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    place-content: center;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, 0);
+    padding: 15px;
+    border-radius: 15%;
+}

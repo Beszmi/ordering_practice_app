@@ -41,8 +41,8 @@
     </div>
     <div class="menu_resz"><p class="user_name">
         <?php 
-            if (!empty($_COOKIE["user_cookie"])){
-                echo "Logged in as: <br> {$_COOKIE["user_cookie"]}";
+            if (!empty($_SESSION["session_username"])){
+                echo "Logged in as: <br> {$_SESSION["session_username"]}";
             } else {
                 echo "not logged in!";
             }
