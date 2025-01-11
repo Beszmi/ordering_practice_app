@@ -122,6 +122,9 @@
                 echo "<br>";
                 echo "<button type=\"submit\" name=\"login_button\" class=\"info\">LOGIN</button><br>";
                 echo "<input type =\"checkbox\" name=\"remember\" value =\"false\"> <p class=\"info1\" style = \" margin: 5px; \">remember?</p>";
+
+                setcookie("last_login_type", "seller", time() + 3600, "/");
+
                 echo "</form>";                
                 if(isset($_POST["login_button"])){
                     if (empty($_POST["user"]) && empty($_POST["pass"])){
