@@ -49,4 +49,4 @@
         ?>
     </p></div>
 </div>
-<div class="version_box"><p class="version">Alpha V0.1.0</p></div>
+<div class="version_box"><p class="version">Alpha V0.5.0</p></div>

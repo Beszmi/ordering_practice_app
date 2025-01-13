@@ -81,7 +81,7 @@
         <title>Login page</title>
     </head>
 <body class="hatter_kep">
-    <?php 
+    <?php
         $error_message = "";
 
         $user_type = isset($_GET["user_type"]) ? $_GET["user_type"] : ""; 
@@ -124,14 +124,17 @@
                 echo "<button type=\"submit\" name=\"login_button\" class=\"info\">LOGIN</button><br>";
                 echo "<input type =\"checkbox\" name=\"remember\" value =\"false\"> <p class=\"info1\" style = \" margin: 5px; \">remember?</p>";
                 echo "</form>";
+                echo "</div>";
                 
                 if (!empty($error_message)) {
-                    echo "<p class=\"error\">$error_message</p>";
+                    echo "<div class=\"doboz\">";
+                    echo "<p class=\"error\" style=\"font-size: 64px;\">$error_message</p>";
+                    echo "</div>";
                 }
             }        
         ?>
         
-        </div>
+        
     <div class="last_logged_box"><p class="last_logged_text">
     <?php 
     if (!empty($_COOKIE["last_login_type"])){

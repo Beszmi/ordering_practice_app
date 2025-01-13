@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <?php
     session_start();
+    if (isset($_POST["logout"])){
+        session_destroy();
+        header("Location: login.php");
+    }    
 ?>
 <style>
     .szep{
@@ -91,7 +95,10 @@
             echo "<p class=\"info1\">Costumer test</p> <br>"; 
             echo "<p class=\"info1\">Username: {$_SESSION["session_username"]}</p> <br>";  
             echo "<p class=\"info1\">pass: {$_SESSION["session_password"]}</p> <br>";    
-        ?>
+            ?>
+            <form action ="buying.php" method="post">
+                <button type="submit" name = "logout" class="servers">log out</button>
+            </form>
         
         </div>
 </body>

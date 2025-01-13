@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <?php
     session_start();
+    if (isset($_POST["logout"])){
+        session_destroy();
+        header("Location: login.php");
+    }   
 ?>
 <style>
     .szep{
@@ -90,6 +94,9 @@
         <?php 
             echo "<p class=\"info1\">Seller test</p>"         
         ?>
+        <form action ="buying.php" method="post">
+            <button type="submit" name = "logout" class="servers">log out</button>
+        </form>
         
         </div>
 </body>
