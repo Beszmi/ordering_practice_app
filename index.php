@@ -129,7 +129,7 @@
     <div class="grid-container">
         <div class="grid-item"><button onclick="window.location.href='login.php?user_type=buying';" class="ajanlo">Costumer <br> Login</button></div>
         <div class="grid-item"><button onclick="window.location.href='login.php?user_type=selling';"class="info">Seller <br> Login</button></div>
-        <div class="grid-item"><button onclick="window.location.href='register.html';"class="servers">Register</button></div>
+        <div class="grid-item"><button onclick="window.location.href='register.php';"class="servers">Register</button></div>
     <div class="last_logged_box"><p class="last_logged_text">
         <?php 
         if (!empty($_COOKIE["last_login_type"])){
