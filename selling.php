@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
     session_start();
+    include "db_connection.php";
     if (isset($_POST["logout"])){
         session_destroy();
         header("Location: login.php");

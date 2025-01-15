@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
     session_start();
+    include "db_connection.php";
 ?>
 <style>
     .szep{
