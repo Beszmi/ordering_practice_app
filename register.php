@@ -94,24 +94,30 @@
                 $error_message = "Username field is empty!";
             } elseif (empty($_POST["pass"])){
                 $error_message = "Password field was empty!";
-            } elseif (empty($_POST["email"])){
-                $error_message = "Email field was empty!";
             } else {
                 $_SESSION["session_username"] = htmlspecialchars($_POST["user"]);
-                $_SESSION["session_password"] = htmlspecialchars($_POST["pass"]);
-                header("Location: login.php?user_type=costumer.php");    
+                $_SESSION["session_password"] = hash("sha256", htmlspecialchars($_POST["pass"]));
+
+                $sql = "INSERT INTO users (username, password, type)
+                        VALUES('{$_SESSION["session_username"]}', '{$_SESSION["session_password"]}', 0)";
+                
+                try{
+                    mysqli_query($connection, $sql);
+                    header("Location: login.php?user_type=costumer.php");
+                }
+                catch(mysqli_sql_exception){
+                    echo "SQL ERROR WHILE REGISTERING";
+                }
+                    
                 echo "<p class= \"error\">BAJ</p>";
             }
         }
-
         include "menu.php";      
         ?>
     <div class="doboz">
 
         <form action= " register.php" method ="post">
             <p class="info1">Username: </p><br><input type= "text" name = "user">
-            <br>
-            <p class="info1">E-mail: </p><br><input type= "text" name = "email">
             <br>
             <p class="info1">Password: </p><br><input type ="password" name = "pass">
             <br>
@@ -137,4 +143,7 @@
     ?>
     </p></div>   
 </body>
+<?php
+    mysqli_close($connection);
+?>
 </html>
