@@ -109,7 +109,7 @@
                 
                     try{
                         mysqli_query($connection, $sql_insert_new);
-                        header("Location: login.php?user_type=buying.php");
+                        header("Location: login.php?user_type=buying");
                         echo "<p class= \"error\">BAJ</p>";
                     }
                     catch(mysqli_sql_exception){
