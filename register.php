@@ -96,20 +96,26 @@
                 $error_message = "Password field was empty!";
             } else {
                 $_SESSION["session_username"] = htmlspecialchars($_POST["user"]);
-                $_SESSION["session_password"] = hash("sha256", htmlspecialchars($_POST["pass"]));
+                $_SESSION["session_password"] = password_hash(htmlspecialchars($_POST["pass"]), PASSWORD_DEFAULT);
 
-                $sql = "INSERT INTO users (username, password, type)
+                $sql_search = "SELECT * FROM users WHERE username = '{$_SESSION["session_username"]}'";
+                $result = mysqli_query($connection, $sql_search);
+
+                if (mysqli_num_rows($result) > 0){
+                    $error_message = "User already registered!";
+                } else {
+                    $sql_insert_new = "INSERT INTO users (username, password, type)
                         VALUES('{$_SESSION["session_username"]}', '{$_SESSION["session_password"]}', 0)";
                 
-                try{
-                    mysqli_query($connection, $sql);
-                    header("Location: login.php?user_type=costumer.php");
-                }
-                catch(mysqli_sql_exception){
-                    echo "SQL ERROR WHILE REGISTERING";
-                }
-                    
-                echo "<p class= \"error\">BAJ</p>";
+                    try{
+                        mysqli_query($connection, $sql_insert_new);
+                        header("Location: login.php?user_type=buying.php");
+                        echo "<p class= \"error\">BAJ</p>";
+                    }
+                    catch(mysqli_sql_exception){
+                        echo "SQL ERROR WHILE REGISTERING";
+                    }
+                }                
             }
         }
         include "menu.php";      

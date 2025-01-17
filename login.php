@@ -98,7 +98,23 @@
                 setcookie("last_login_type", $user_type, time() + 3600, "/");
                 $_SESSION["session_username"] = htmlspecialchars($_POST["user"]);
                 $_SESSION["session_password"] = htmlspecialchars($_POST["pass"]);
-                header("Location: {$user_type}.php");    
+
+                $sql = "SELECT * FROM users WHERE username = '{$_SESSION["session_username"]}'";
+                $result = mysqli_query($connection, $sql);
+
+                if (mysqli_num_rows($result) > 0){
+                    $row = mysqli_fetch_assoc($result);
+
+                    if (password_verify($_SESSION["session_password"], $row["password"])){
+                        header("Location: {$user_type}.php"); 
+                    } else {
+                        $error_message = "wrong password!";
+                    }
+                                         
+                } else {
+                    $error_message = "Username not registered!";
+                }
+                  
                 echo "<p class= \"error\">BAJ</p>";                    
             }
         }
