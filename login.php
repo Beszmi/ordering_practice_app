@@ -106,6 +106,7 @@
                     $row = mysqli_fetch_assoc($result);
 
                     if (password_verify($_SESSION["session_password"], $row["password"])){
+                        $_SESSION["succesful_login"] = TRUE;
                         header("Location: {$user_type}.php"); 
                     } else {
                         $error_message = "wrong password!";

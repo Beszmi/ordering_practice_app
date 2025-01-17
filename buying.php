@@ -4,8 +4,16 @@
     include "db_connection.php";
     if (isset($_POST["logout"])){
         session_destroy();
-        header("Location: login.php");
+        header("Location: login.php?user_type=buying");
     }
+    if (!isset($_SESSION["succesful_login"])){
+        session_destroy();
+        header("Location: login.php?user_type=buying");
+        if(!$_SESSION["succesful_login"] == TRUE){
+            session_destroy();
+            header("Location: login.php?user_type=buying");
+        }
+    }        
 ?>
 <style>
     .szep{
@@ -92,7 +100,7 @@
 
         ?>
     <div class="doboz">
-        <?php 
+            <?php 
             echo "<p class=\"info1\">Costumer test</p> <br>"; 
             echo "<p class=\"info1\">Username: {$_SESSION["session_username"]}</p> <br>";  
             echo "<p class=\"info1\">pass: {$_SESSION["session_password"]}</p> <br>";    
