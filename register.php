@@ -98,22 +98,30 @@
                 $_SESSION["session_username"] = htmlspecialchars($_POST["user"]);
                 $_SESSION["session_password"] = password_hash(htmlspecialchars($_POST["pass"]), PASSWORD_DEFAULT);
 
-                $sql_search = "SELECT * FROM users WHERE username = '{$_SESSION["session_username"]}'";
-                $result = mysqli_query($connection, $sql_search);
+                $sql = "SELECT * FROM users WHERE username = :username";
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(':username', $_SESSION["session_username"], PDO::PARAM_STR);
+                $stmt->execute();
 
-                if (mysqli_num_rows($result) > 0){
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                if ($row){
                     $error_message = "User already registered!";
                 } else {
                     $sql_insert_new = "INSERT INTO users (username, password, type)
-                        VALUES('{$_SESSION["session_username"]}', '{$_SESSION["session_password"]}', 0)";
+                        VALUES(?, ?, 0)";
+                    $prepared_insert = $pdo->prepare($sql_insert_new);
+                    
+                    $prepared_insert->bindValue(1, $_SESSION["session_username"]);
+                    $prepared_insert->bindValue(2, $_SESSION["session_password"]);
                 
                     try{
-                        mysqli_query($connection, $sql_insert_new);
+                        $prepared_insert->execute();
                         header("Location: login.php?user_type=buying");
                         echo "<p class= \"error\">BAJ</p>";
                     }
-                    catch(mysqli_sql_exception){
-                        echo "SQL ERROR WHILE REGISTERING";
+                    catch(PDOException $e){
+                        echo "ERROR while registering: $e";
                     }
                 }                
             }
