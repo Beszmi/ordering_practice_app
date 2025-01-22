@@ -99,17 +99,21 @@
                 $_SESSION["session_username"] = htmlspecialchars($_POST["user"]);
                 $_SESSION["session_password"] = htmlspecialchars($_POST["pass"]);
 
-                $sql = "SELECT * FROM users WHERE username = '{$_SESSION["session_username"]}'";
-                $result = $mysqli->query($sql);
+                $sql = "SELECT * FROM users WHERE username = :username";
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(':username', $_SESSION["session_username"], PDO::PARAM_STR);
+                $stmt->execute();
 
-                if (mysqli_num_rows($result) > 0){
-                    $row = mysqli_fetch_assoc($result);
-
-                    if (password_verify($_SESSION["session_password"], $row["password"])){
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                
+                if ($row){
+                    
+                    $pw = htmlentities($row["password"]);
+                    if (password_verify($_SESSION["session_password"], $pw)){
                         $_SESSION["succesful_login"] = TRUE;
                         header("Location: {$user_type}.php"); 
                     } else {
-                        $error_message = "wrong password!";
+                        $error_message = "wrong password! $pw";
                     }
                                          
                 } else {
