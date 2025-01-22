@@ -150,6 +150,6 @@
     </p></div>   
 </body>
 <?php
-    mysqli_close($connection);
+    $pdo = null;
 ?>
 </html>

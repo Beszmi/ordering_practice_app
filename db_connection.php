@@ -1,12 +1,9 @@
 <?php
     try {
-        $db_server = "localhost";
-        $db_user = "root";
-        $db_pass = "";
-        $db_name = "usersdb";
-        $connection = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
+        $pdo = new PDO('mysql:host=localhost;dbname=usersdb;charset=utf8', "root", '');
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
-    catch(mysqli_sql_exception){
-        $connection = "couldnt establish mysql connection";
+    catch(PDOException $e){
+        $connection = die('Connection error: ' . $e->getMessage());;
     }
 ?>

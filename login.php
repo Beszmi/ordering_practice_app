@@ -100,7 +100,7 @@
                 $_SESSION["session_password"] = htmlspecialchars($_POST["pass"]);
 
                 $sql = "SELECT * FROM users WHERE username = '{$_SESSION["session_username"]}'";
-                $result = mysqli_query($connection, $sql);
+                $result = $mysqli->query($sql);
 
                 if (mysqli_num_rows($result) > 0){
                     $row = mysqli_fetch_assoc($result);
@@ -164,6 +164,6 @@
     </p></div>   
 </body>
 <?php
-    mysqli_close($connection);
+    $pdo = null;
 ?>
 </html>
