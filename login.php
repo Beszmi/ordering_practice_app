@@ -105,9 +105,8 @@
                 $stmt->execute();
 
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
-                
-                if ($row){
-                    
+
+                if ($row){                    
                     $pw = htmlentities($row["password"]);
                     if (password_verify($_SESSION["session_password"], $pw)){
                         $_SESSION["succesful_login"] = TRUE;

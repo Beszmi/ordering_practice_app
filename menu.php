@@ -51,8 +51,8 @@
 </div>
 <div class="version_box"><p class="version">Alpha V0.5.0</p>
 <?php
-    if (isset($connection)){
-            echo "<p class=\"error\" style=\"font-size: 32px;\">$connection</p>";
+    if (isset($connection_error)){
+            echo "<p class=\"error\" style=\"font-size: 32px;\">$connection_error</p>";
         } else {
             echo "<p class=\"error\" style=\"font-size: 32px;\">SQL connected</p>";
         }

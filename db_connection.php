@@ -4,6 +4,6 @@
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     catch(PDOException $e){
-        $connection = die('Connection error: ' . $e->getMessage());;
+        $connection_error = die('Connection error: ' . $e->getMessage());
     }
 ?>
