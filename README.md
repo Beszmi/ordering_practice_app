@@ -15,3 +15,4 @@ In this web app you can buy and sell stocks of items register and delete account
  - editing your account details
  - buying and selling with the option to upload images with the stocked up items
  - account deletion
+ - account page
