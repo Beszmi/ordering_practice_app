@@ -96,16 +96,55 @@
 <body class="hatter_kep">
     <?php 
         setcookie("last_login_type", "seller", time() + 3600, "/");
-
         include "menu.php";  
+        $sql = "SELECT * FROM items";
         ?>
     <div class="doboz">
+    
+    <div class="container">
+    <div class="item">
+        <img src="macska.gif" alt="IMG">
+        <div class="content">
+            <div class="title">Item Title</div>
+            <div class="details">
+                <div class="price">$99</div>
+                <div class="description">Short description of the item goes here.</div>
+            </div>
+            <div class="date">Date: 2025-02-02</div>
+        </div>
+    </div>
+
+    <div class="item">
+        <img src="macska.gif" alt="IMG">
+        <div class="content">
+            <div class="title">Item Title</div>
+            <div class="details">
+                <div class="price">$79</div>
+                <div class="description">Another description for this item.</div>
+            </div>
+            <div class="date">Date: 2025-02-02</div>
+        </div>
+    </div>
+
+    <div class="item">
+        <img src="macska.gif" alt="IMG">
+            <div class="content">
+                <div class="title">Item Title</div>
+                <div class="details">
+                    <div class="price">$59</div>
+                    <div class="description">Yet another item description.</div>
+                </div>
+                <div class="date">Date: 2025-02-02</div>
+            </div>
+        </div>
+    </div>
+
         <?php 
-            echo "<p class=\"info1\">Seller test</p> <br>"; 
-            echo "<p class=\"info1\">Username: {$_SESSION["session_username"]}</p> <br>";  
-            echo "<p class=\"info1\">pass: {$_SESSION["session_password"]}</p> <br>";    
+        //    echo "<p class=\"info1\">Seller test</p> <br>"; 
+        //    echo "<p class=\"info1\">Username: {$_SESSION["session_username"]}</p> <br>";  
+        //    echo "<p class=\"info1\">pass: {$_SESSION["session_password"]}</p> <br>";    
         ?>
-        <form action ="buying.php" method="post">
+        <form action ="selling.php" method="post">
             <button type="submit" name = "logout" class="servers">log out</button>
         </form>
         
