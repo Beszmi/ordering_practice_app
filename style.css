@@ -186,12 +186,12 @@
     right: 50%;
     transform: translate(-50%, 0);
     padding: 15px;
-    border-radius: 15%;
+    border-radius: 10%;
+    max-width: 80%;
 }
 .container {
     width: 80%;
-    margin: auto;
-    margin-bottom: 5%;
+    margin: 15px;
     background: rgba(127, 127, 127, 0.6);
     padding: 20px;
     border-radius: 10px;
@@ -199,6 +199,7 @@
 }
 .item {
     display: flex;
+    height: auto;
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
@@ -235,7 +236,15 @@
 }
 .description {
     flex: 1;
+    max-height: min(15vh, 200px);
+}
+.description_text{
     color: #666;
+    overflow-y: scroll;
+    text-align: left;
+    overflow-y: auto;
+    max-height: 100px;
+    flex-grow: 1;
 }
 .date {
     font-size: 12px;

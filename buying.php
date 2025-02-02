@@ -100,11 +100,34 @@
 
         ?>
     <div class="doboz">
-            <?php 
-            echo "<p class=\"info1\">Costumer test</p> <br>"; 
-            echo "<p class=\"info1\">Username: {$_SESSION["session_username"]}</p> <br>";  
-            echo "<p class=\"info1\">pass: {$_SESSION["session_password"]}</p> <br>";    
+        <div class="container">
+            <?php
+            $sql = "SELECT * FROM items;";
+            
+            foreach($pdo->query($sql) as $row){
+                echo "<div class=\"item\">";
+                    echo "<img src=\"{$row['pic_loc']}\" alt=\"missing image\">";
+                    echo "<div class=\"content\">";
+                    echo "<div class=\"title\">{$row['item_name']}</div>";
+                        echo "<div class=\"details\">";
+                        echo "<div class=\"price\">{$row['price']} Ft</div>";  
+                            echo "<div class=\"description\">
+                                <p class=\"description_text\">{$row['item_desc']} </p>
+                                </div>";
+                        echo "</div>";
+                        echo "<div class=\"date\">{$row['creation_time']}</div>";
+                    echo "</div>";
+                echo "</div>";
+            }
+
             ?>
+        </div>
+
+        <?php //debugging
+        //    echo "<p class=\"info1\">Seller test</p> <br>"; 
+        //    echo "<p class=\"info1\">Username: {$_SESSION["session_username"]}</p> <br>";  
+        //    echo "<p class=\"info1\">pass: {$_SESSION["session_password"]}</p> <br>";    
+        ?>
             <form action ="buying.php" method="post">
                 <button type="submit" name = "logout" class="servers">log out</button>
             </form>

@@ -97,54 +97,38 @@
     <?php 
         setcookie("last_login_type", "seller", time() + 3600, "/");
         include "menu.php";  
-        $sql = "SELECT * FROM items";
         ?>
     <div class="doboz">
     
     <div class="container">
-    <div class="item">
-        <img src="macska.gif" alt="IMG">
-        <div class="content">
-            <div class="title">Item Title</div>
-            <div class="details">
-                <div class="price">$99</div>
-                <div class="description">Short description of the item goes here.</div>
-            </div>
-            <div class="date">Date: 2025-02-02</div>
-        </div>
+        <?php
+            $sql = "SELECT * FROM items;";
+            
+            foreach($pdo->query($sql) as $row){
+                echo "<div class=\"item\">";
+                    echo "<img src=\"{$row['pic_loc']}\" alt=\"missing image\">";
+                    echo "<div class=\"content\">";
+                    echo "<div class=\"title\">{$row['item_name']}</div>";
+                        echo "<div class=\"details\">";
+                        echo "<div class=\"price\">{$row['price']} Ft</div>";  
+                            echo "<div class=\"description\">
+                                <p class=\"description_text\">{$row['item_desc']} </p>
+                                </div>";
+                        echo "</div>";
+                        echo "<div class=\"date\">{$row['creation_time']}</div>";
+                    echo "</div>";
+                echo "</div>";
+            }
+
+        ?>
     </div>
 
-    <div class="item">
-        <img src="macska.gif" alt="IMG">
-        <div class="content">
-            <div class="title">Item Title</div>
-            <div class="details">
-                <div class="price">$79</div>
-                <div class="description">Another description for this item.</div>
-            </div>
-            <div class="date">Date: 2025-02-02</div>
-        </div>
-    </div>
-
-    <div class="item">
-        <img src="macska.gif" alt="IMG">
-            <div class="content">
-                <div class="title">Item Title</div>
-                <div class="details">
-                    <div class="price">$59</div>
-                    <div class="description">Yet another item description.</div>
-                </div>
-                <div class="date">Date: 2025-02-02</div>
-            </div>
-        </div>
-    </div>
-
-        <?php 
+        <?php //debugging
         //    echo "<p class=\"info1\">Seller test</p> <br>"; 
         //    echo "<p class=\"info1\">Username: {$_SESSION["session_username"]}</p> <br>";  
         //    echo "<p class=\"info1\">pass: {$_SESSION["session_password"]}</p> <br>";    
         ?>
-        <form action ="selling.php" method="post">
+        <form action ="selling.php" method="post" style="display: inline;">
             <button type="submit" name = "logout" class="servers">log out</button>
         </form>
         
