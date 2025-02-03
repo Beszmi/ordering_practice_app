@@ -49,7 +49,7 @@
         ?>
     </p></div>
 </div>
-<div class="version_box"><p class="version">Beta V0.1.0</p>
+<div class="version_box"><p class="version">Beta V0.1.1</p>
 <?php
     if (isset($connection_error)){
             echo "<p class=\"error\" style=\"font-size: 32px;\">$connection_error</p>";

@@ -29,6 +29,58 @@
     box-shadow: 0px 0px 8px rgba(0, 0, 0, .6);
     cursor: pointer;
 }
+.servers{
+    background-color: #C43274;
+    color: #FFFFFF;
+    border: #B4654A;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: xx-large;
+    font-style: bold;
+    cursor: pointer; 
+    font-size: 24px;
+    border: 2px;
+}
+.servers:hover{
+    background-color: #912556;
+    color: #FFE315;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, .6);
+    transition: 0.1s;
+    padding: 10px;
+    font-weight: bold;
+}
+.servers:active{
+    color: blue;
+    background-color: #B4654A;
+    font-weight: bold;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, .8);
+}
+.info{
+    background-color: #1A1ABC;
+    color: #FFFFFF;
+    border: #0075F2;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: xx-large;
+    font-style: bold;
+    cursor: pointer; 
+    font-size: 24px;
+    border: 2px;
+}
+.info:hover{
+    background-color: #13138B;
+    color:  #FFE315;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, .6);
+    transition: 0.1s;
+    padding: 10px;
+    font-weight: bold;
+}
+.info:active{
+    color: blue;
+    background-color: #41463D;
+    font-weight: bold;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, .8);
+}
 .kozep{
     place-content: center;
     align-items: center;

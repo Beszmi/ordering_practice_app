@@ -53,32 +53,6 @@
         font-weight: bold;
         box-shadow: 0px 0px 8px rgba(0, 0, 0, .8);
     }
-    .servers{
-        background-color: #499F68;
-        color: #C2C5BB;
-        border: #B4654A;
-        padding: 5px;
-        border-radius: 4px;
-        font-size: xx-large;
-        font-style: bold;
-        cursor: pointer; 
-        font-size: 24px;
-        border: 2px;
-    }
-    .servers:hover{
-        background-color: #157A6E;
-        color: #C2C5BB;
-        box-shadow: 0px 0px 8px rgba(0, 0, 0, .6);
-        transition: 0.1s;
-        padding: 10px;
-        font-weight: bold;
-    }
-    .servers:active{
-        color: blue;
-        background-color: #B4654A;
-        font-weight: bold;
-        box-shadow: 0px 0px 8px rgba(0, 0, 0, .8);
-    }
     .info1{
         color: #FFEAEE;
         border: #0075F2;
