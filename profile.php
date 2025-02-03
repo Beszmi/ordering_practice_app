@@ -4,16 +4,16 @@
     include "db_connection.php";
     if (isset($_POST["logout"])){
         session_destroy();
-        header("Location: login.php?user_type=buying");
-    }
+        header("Location: login.php?user_type=selling");
+    }   
     if (!isset($_SESSION["succesful_login"])){
         session_destroy();
-        header("Location: login.php?user_type=buying");
+        header("Location: login.php?user_type=selling");
         if(!$_SESSION["succesful_login"] == TRUE){
             session_destroy();
-            header("Location: login.php?user_type=buying");
+            header("Location: login.php?user_type=selling");
         }
-    }        
+    }
 ?>
 <style>
     .szep{
@@ -85,55 +85,29 @@
         font-weight: bold;
         font-size: 24px;
         text-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+        display: inline-block;
     }
 </style>
 <html lang="en">
     <head>
         <?php include "header.html"?>
-        <title>Costumer page</title>
+        <title>Seller page</title>
     </head>
 <body class="hatter_kep">
     <?php 
-        setcookie("last_login_type", "costumer", time() + 3600, "/");
-
-        include "menu.php";
-
+        setcookie("last_login_type", "seller", time() + 3600, "/");
+        include "menu.php";  
         ?>
     <div class="doboz">
-        <div class="container">
-            <?php
-            $sql = "SELECT * FROM items;";
-            
-            foreach($pdo->query($sql) as $row){
-                echo "<div class=\"item\">";
-                    echo "<img src=\"{$row['pic_loc']}\" alt=\"missing image\">";
-                    echo "<div class=\"content\">";
-                    echo "<div class=\"title\">{$row['item_name']}</div>";
-                        echo "<div class=\"details\">";
-                        echo "<div class=\"price\">{$row['price']} Ft</div>";  
-                            echo "<div class=\"description\">
-                                <p class=\"description_text\">{$row['item_desc']} </p>
-                                </div>";
-                        echo "</div>";
-                        echo "<div class=\"bottom-row\">";
-                            echo "<div class=\"date\">{$row['creation_time']}</div>";
-                            echo "<button class=\"buy-button\">Buy</button>";                        
-                        echo "</div>";
-                    echo "</div>";
-                echo "</div>";
-            }
 
-            ?>
-        </div>
-
-        <?php //debugging
-        //    echo "<p class=\"info1\">Seller test</p> <br>"; 
-        //    echo "<p class=\"info1\">Username: {$_SESSION["session_username"]}</p> <br>";  
-        //    echo "<p class=\"info1\">pass: {$_SESSION["session_password"]}</p> <br>";    
+        <?php
+            echo "<p class=\"info1\">Profile</p> <br>"; 
+            echo "<p class=\"info1\">Username: {$_SESSION["session_username"]}</p> <br>";
+            // echo "<p class=\"info1\">pass: {$_SESSION["session_password"]}</p> <br>";    
         ?>
-            <form action ="buying.php" method="post">
-                <button type="submit" name = "logout" class="servers">log out</button>
-            </form>
+        <form action ="selling.php" method="post" style="display: inline;">
+            <button type="submit" name = "logout" class="servers">log out</button>
+        </form>
         
         </div>
 </body>

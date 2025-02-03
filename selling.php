@@ -115,7 +115,9 @@
                                 <p class=\"description_text\">{$row['item_desc']} </p>
                                 </div>";
                         echo "</div>";
-                        echo "<div class=\"date\">{$row['creation_time']}</div>";
+                        echo "<div class=\"bottom-row\">";
+                            echo "<div class=\"date\">{$row['creation_time']}</div>";                      
+                        echo "</div>";
                     echo "</div>";
                 echo "</div>";
             }
