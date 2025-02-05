@@ -11,6 +11,7 @@
         color: white;
         text-shadow: rgba(0, 0, 0, 0.8);
         right: 10px;
+        margin-left: 5%;
     }   
 </style>
 <div class="menu">
@@ -39,17 +40,20 @@
     <?php echo "Dátum: " . (date("Y-m-d",$t)); 
     ?> </p>
     </div>
-    <div class="menu_resz"><p class="user_name">
+    <div class="menu_resz" style="display: flex;  justify-content: flex-end;"><p class="user_name">
         <?php 
-            if (!empty($_SESSION["session_username"])){
-                echo "Logged in as: <br> {$_SESSION["session_username"]}";
+            if (!empty($_SESSION["session_username"])){     
+                echo "<form action= \"profile.php\" method =\"post\">";           
+                echo "<button type=\"submit\" name=\"entering\" class=\"info\">PROFILE PAGE</button><br>";
+                echo "</form>";
+                echo "<p class=\"user_name\">Logged in as: <br> {$_SESSION["session_username"]}</p>";
             } else {
                 echo "not logged in!";
             }
         ?>
     </p></div>
 </div>
-<div class="version_box"><p class="version">Beta V0.1.1</p>
+<div class="version_box"><p class="version">Beta V0.1.2</p>
 <?php
     if (isset($connection_error)){
             echo "<p class=\"error\" style=\"font-size: 32px;\">$connection_error</p>";

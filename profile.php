@@ -91,11 +91,10 @@
 <html lang="en">
     <head>
         <?php include "header.html"?>
-        <title>Seller page</title>
+        <title>Profile page</title>
     </head>
 <body class="hatter_kep">
-    <?php 
-        setcookie("last_login_type", "seller", time() + 3600, "/");
+    <?php
         include "menu.php";  
         ?>
     <div class="doboz">
@@ -103,10 +102,18 @@
         <?php
             echo "<p class=\"info1\">Profile</p> <br>"; 
             echo "<p class=\"info1\">Username: {$_SESSION["session_username"]}</p> <br>";
-            echo "<p class=\"info1\">ID: {$_SESSION["id"]}</p> <br>";
+
+            if(!isset($_POST["username_button"]) && !isset($_POST["password_button"])){
+                echo "<form action= \"profile.php\" method =\"post\">";
+                echo "<button type=\"submit\" name=\"username_button\" class=\"info\">USERNAME CHANGE</button><br>";
+                echo "<button type=\"submit\" name=\"password_button\" class=\"info\">PASSWORD CHANGE</button><br>";
+                echo "</form>";
+            }
+
+            // echo "<p class=\"info1\">ID: {$_SESSION["logged_in_user_id"]}</p> <br>";
             // echo "<p class=\"info1\">pass: {$_SESSION["session_password"]}</p> <br>";    
         ?>
-        <form action ="selling.php" method="post" style="display: inline;">
+        <form action ="buying.php" method="post" style="display: inline;">
             <button type="submit" name = "logout" class="servers">log out</button>
         </form>
         

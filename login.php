@@ -108,9 +108,12 @@
 
                 if ($row){                    
                     $pw = htmlentities($row["password"]);
-                    $_SESSION["logged_in_user_id"]  = $row["id"];
                     if (password_verify($_SESSION["session_password"], $pw)){
                         $_SESSION["succesful_login"] = TRUE;
+
+                        $_SESSION["logged_in_user_id"]  = $row["id"];
+                        $_SESSION["session_password"] = NULL;
+                        $_SESSION["logged_in_user_type"]  = $row["type"];
                         header("Location: {$user_type}.php"); 
                     } else {
                         $error_message = "wrong password! $pw";
@@ -142,7 +145,7 @@
                 echo "<p class=\"info1\">Password: </p><br><input type =\"password\" name = \"pass\">";
                 echo "<br>";
                 echo "<button type=\"submit\" name=\"login_button\" class=\"info\">LOGIN</button><br>";
-                echo "<input type =\"checkbox\" name=\"remember\" value =\"false\"> <p class=\"info1\" style = \" margin: 5px; \">remember?</p>";
+                // echo "<input type =\"checkbox\" name=\"remember\" value =\"false\"> <p class=\"info1\" style = \" margin: 5px; \">remember?</p>";
                 echo "</form>";
                 echo "</div>";
                 
