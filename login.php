@@ -108,6 +108,7 @@
 
                 if ($row){                    
                     $pw = htmlentities($row["password"]);
+                    $_SESSION["logged_in_user_id"]  = $row["id"];
                     if (password_verify($_SESSION["session_password"], $pw)){
                         $_SESSION["succesful_login"] = TRUE;
                         header("Location: {$user_type}.php"); 
@@ -117,9 +118,7 @@
                                          
                 } else {
                     $error_message = "Username not registered!";
-                }
-                  
-                echo "<p class= \"error\">BAJ</p>";                    
+                }              
             }
         }
 

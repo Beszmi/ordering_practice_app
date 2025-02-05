@@ -103,6 +103,7 @@
         <?php
             echo "<p class=\"info1\">Profile</p> <br>"; 
             echo "<p class=\"info1\">Username: {$_SESSION["session_username"]}</p> <br>";
+            echo "<p class=\"info1\">ID: {$_SESSION["id"]}</p> <br>";
             // echo "<p class=\"info1\">pass: {$_SESSION["session_password"]}</p> <br>";    
         ?>
         <form action ="selling.php" method="post" style="display: inline;">
