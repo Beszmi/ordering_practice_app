@@ -42,10 +42,12 @@
     </div>
     <div class="menu_resz" style="display: flex;  justify-content: flex-end;"><p class="user_name">
         <?php 
-            if (!empty($_SESSION["session_username"])){     
-                echo "<form action= \"profile.php\" method =\"post\">";           
-                echo "<button type=\"submit\" name=\"entering\" class=\"info\">PROFILE PAGE</button><br>";
-                echo "</form>";
+            if (!empty($_SESSION["session_username"])){
+                if (basename($_SERVER['PHP_SELF']) !== 'profile.php'){
+                    echo "<form action= \"profile.php\" method =\"post\">";           
+                    echo "<button type=\"submit\" name=\"entering\" class=\"info\">PROFILE PAGE</button><br>";
+                    echo "</form>";
+                }                
                 echo "<p class=\"user_name\">Logged in as: <br> {$_SESSION["session_username"]}</p>";
             } else {
                 echo "not logged in!";
@@ -53,7 +55,7 @@
         ?>
     </p></div>
 </div>
-<div class="version_box"><p class="version">Beta V0.1.2</p>
+<div class="version_box"><p class="version">Beta V0.2.0</p>
 <?php
     if (isset($connection_error)){
             echo "<p class=\"error\" style=\"font-size: 32px;\">$connection_error</p>";
