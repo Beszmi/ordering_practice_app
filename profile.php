@@ -60,9 +60,6 @@
 <body class="hatter_kep">
     <?php
 
-
-        include "menu.php";
-
         $error_message = "";
         
         if(isset($_POST["usr_change_button"])){
@@ -217,6 +214,7 @@
                 }              
             }
         }
+        include "menu.php";
         ?>
     <div class="doboz">
 
