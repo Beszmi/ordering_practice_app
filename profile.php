@@ -59,6 +59,8 @@
     </head>
 <body class="hatter_kep">
     <?php
+
+
         include "menu.php";
 
         $error_message = "";
@@ -84,8 +86,6 @@
                 if ($row){                    
                     $pw = htmlentities($row["password"]);
                     if (password_verify($verification_pass, $pw)){
-                        $_SESSION["succesful_login"] = TRUE;
-
                         $_SESSION["logged_in_user_id"]  = $row["id"];
                         
                         $_SESSION["logged_in_user_type"]  = $row["type"];
@@ -138,8 +138,6 @@
                 if ($row){                    
                     $pw = htmlentities($row["password"]);
                     if (password_verify($current_password, $pw)){
-                        $_SESSION["succesful_login"] = TRUE;
-
                         $_SESSION["logged_in_user_id"]  = $row["id"];
                         
                         $_SESSION["logged_in_user_type"]  = $row["type"];
@@ -173,24 +171,67 @@
             $new_password = NULL;
         }
 
+        // account deletion confirmed
+        if(isset($_POST["confirmed_account_deletion"])){
+            if (empty($_POST["verification_pass"])){
+                $error_message = "You didnt put in the password!";
+            } else {
+                $current_userid = htmlspecialchars($_SESSION["logged_in_user_id"]);
+                $current_password = htmlspecialchars($_POST["verification_pass"]);
+
+                $sql = "SELECT * FROM users WHERE id = :userid";
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(':userid', $current_userid, PDO::PARAM_STR);
+                $stmt->execute();
+
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                if ($row){                    
+                    $pw = htmlentities($row["password"]);
+                    if (password_verify($current_password, $pw)){
+                        $sql_remove_user = "DELETE FROM users WHERE `users`.`id` = ?";
+
+                        $prepared_remove_user = $pdo->prepare($sql_remove_user);
+                        
+                        $prepared_remove_user->bindValue(1, $current_userid);
+                        
+                        try{
+                            $prepared_remove_user->execute();
+                            $succes_text = "succesfull password change!";
+                            $error_message = "Succesfully deleted user account :(";
+                            session_destroy();
+                            header("Location: index.php");
+                        }
+                        catch(PDOException $e){
+                            $error_message = "ERROR while changing username: $e";
+                        }
+
+                    } else {
+                        $error_message = "wrong password!";
+                    }
+                                         
+                } else {
+                    $error_message = "This is an invalid user!";
+                }              
+            }
+        }
         ?>
     <div class="doboz">
 
         <?php
             echo "<p class=\"info1\">Profile</p> <br>"; 
             echo "<p class=\"info1\">Username: {$_SESSION["session_username"]}</p> <br>";
+            echo "<form action= \"profile.php\" method =\"post\">";
 
             // default
-            if(!isset($_POST["username_button"]) && !isset($_POST["password_button"])){
-                echo "<form action= \"profile.php\" method =\"post\">";
+            if(!isset($_POST["username_button"]) && !isset($_POST["password_button"]) && !isset($_POST["delete_acc_button"])){                
                 echo "<button type=\"submit\" name=\"username_button\" class=\"info\">USERNAME CHANGE</button><br>";
                 echo "<button type=\"submit\" name=\"password_button\" class=\"info\">PASSWORD CHANGE</button><br>";
-                echo "</form>";
+                echo "<button type=\"submit\" name=\"delete_acc_button\" class=\"info\" style=\"background-color: red;\">DELETE ACCOUNT</button><br>";
             }
             
             //username change
             if(isset($_POST["username_button"])){
-                echo "<form action= \"profile.php\" method =\"post\">";
                 echo "<p class=\"info1\">New Username: </p><br><input type= \"text\" name = \"new_user\">";
                 echo "<br>";
                 echo "<p class=\"info1\">Password: </p><br><input type =\"password\" name = \"verification_pass\">";
@@ -199,12 +240,10 @@
                 echo "<button type=\"submit\" name=\"cancel_button\" class=\"info\" style=\"background-color: red;\">CANCEL</button><br>";
                 echo "<button type=\"submit\" name=\"usr_change_button\" class=\"info\">CHANGE</button><br>";
                 echo "</div>";
-                echo "</form>";
             }
 
             //password change
             if(isset($_POST["password_button"])){
-                echo "<form action= \"profile.php\" method =\"post\">";
                 echo "<p class=\"info1\">Password: </p><br><input type= \"password\" name = \"verification_pass\">";
                 echo "<br>";
                 echo "<p class=\"info1\">New Password: </p><br><input type =\"password\" name = \"new_pass\">";
@@ -213,12 +252,22 @@
                 echo "<button type=\"submit\" name=\"cancel_button\" class=\"info\" style=\"background-color: red;\">CANCEL</button><br>";
                 echo "<button type=\"submit\" name=\"pw_change_button\" class=\"info\">CHANGE</button><br>";
                 echo "</div>";
-                echo "</form>";
             }
 
+            if(isset($_POST["delete_acc_button"])){
+                echo "<p class=\"info1\">Password: </p><br><input type= \"password\" name = \"verification_pass\">";
+                echo "<br>";
+                echo "<div class= \"button_div\">";
+                echo "<button type=\"submit\" name=\"cancel_button\" class=\"info\">CANCEL</button><br>";
+                echo "<button type=\"submit\" name=\"confirmed_account_deletion\" class=\"info\" style=\"background-color: red;\">CONFIRM ACCOUNT <br> DELETION</button><br>";                
+                echo "</div>";                
+            }
+            echo "</form>";
             // echo "<p class=\"info1\">ID: {$_SESSION["logged_in_user_id"]}</p> <br>";
             // echo "<p class=\"info1\">pass: {$_SESSION["session_password"]}</p> <br>";    
         ?>
+
+        
         <form action ="buying.php" method="post" style="display: inline;">
             <button type="submit" name = "logout" class="servers">log out</button>
         </form>

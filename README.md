@@ -10,9 +10,10 @@ In this web app you can buy and sell stocks of items register and delete account
  - cookie remembering your last login, logins kept in session
  - using PDO for database connection
  - Encrypted passwords
+ - account page
+ - editing your account details
+ - account deletion
  
  **planned:**
- - editing your account details
  - buying and selling with the option to upload images with the stocked up items
- - account deletion
- - account page
+ - displaying what itmes you bought/have on sale on your profile page
