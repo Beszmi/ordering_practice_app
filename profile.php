@@ -66,6 +66,7 @@
         $error_message = "";
         
         if(isset($_POST["usr_change_button"])){
+            $new_username = htmlspecialchars($_POST["new_user"]);
             if (empty($_POST["new_user"]) && empty($_POST["verification_pass"])){
                 $error_message = "You didnt put in your login information!";
             } elseif (empty($_POST["new_user"])){
@@ -94,11 +95,12 @@
 
                         $prepared_change_username = $pdo->prepare($sql_change_username);
                         
-                        $prepared_change_username->bindValue(1, $_POST["new_user"]);
+                        $prepared_change_username->bindValue(1, $new_username);
                         $prepared_change_username->bindValue(2, $current_userid);
                         
                         try{
                             $prepared_change_username->execute();
+                            $_SESSION["session_username"] = $new_username;
                             $succes_text = "succesfull username change!";
                         }
                         catch(PDOException $e){
