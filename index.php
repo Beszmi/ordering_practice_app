@@ -12,6 +12,7 @@
     .cim{
         font-weight: bold;
         font-size: 72px;
+        margin: 30px;
         color: blue;
         text-shadow: 0px 0px 8px rgba(0, 0, 0, .6);
         font-family: Arial, Helvetica, sans-serif;
@@ -19,7 +20,7 @@
     .doboz_index{
         position: relative;
         text-align: center;
-        margin-top: 30px;
+        margin-top: 100px;
         width: fit-content;
         justify-content: center;
         align-items: center;
@@ -27,7 +28,6 @@
         left: 50%;
         right: 50%;
         transform: translate(-50%, 0);
-        padding: 15px;
         border-radius: 15%;
     }
     .costumer_button{
